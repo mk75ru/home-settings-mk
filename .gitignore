@@ -1,0 +1,8 @@
+/*
+!.gitignore
+!/.emacs.el
+!org
+!README.md
+!.ycm_extra_conf*
+!.emacs_nilsdeppe.el
+!/.emacs.d/local
