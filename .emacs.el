@@ -32,38 +32,38 @@
 (defvar my:compile-command "clang++ -Wall -Wextra -std=c++14 ")
 
 ;; Emacs is not a package manager, and here we load its package manager!  
-(load-file "~//.emacs_local.d/package.d/package.el")
+(load-file "~//.emacs.d/local/package.el")
 
 ;;YouCompleteMeForEmacs
-(load-file "~//.emacs_local.d/YouCompleteMeForEmacs.d/YouCompleteMeForEmacs.el")
+(load-file "~//.emacs.d/local/YouCompleteMeForEmacs.el")
 
 
 ;;Настройка внешнего вида редактора 
-(load-file "~//.emacs_local.d/faceemacs.d/faceemacs.el")
+(load-file "~//.emacs.d/local/faceemacs.el")
 
 ;;Сохранение сеанса
-(load-file "~//.emacs_local.d/savesession.d/savesession.el")
+(load-file "~//.emacs.d/local/savesession.el")
 
 
 ;;Поиск парной скобки и их подсветка A-q
-(load-file "~//.emacs_local.d/matchparen.d/matchparen.el")
+(load-file "~//.emacs.d/local/matchparen.el")
 
 ;;Перемещение между окнами
 ;;Перемещение по окнам при помощи клавиш  <S-up>, <S-down>, <S-left>, <S-right>
-(load-file "~//.emacs_local.d/window.d/window-number.el")
+(load-file "~//.emacs.d/local/window-number.el")
 
 ;;Управляем размером окна
 ;;изменять размеры окна, по умолчанию, можно мышкой, для этого нужно убирать руку от клавиатуры. 
 ;;а это удобно? я тоже так думаю. добавлем следущее в .emacs.
 ;;как видно из keymap' ом, 'ctrl + alt + \arrow keys\' резайзит окна. 
-(load-file "~//.emacs_local.d/window.d/resize-window.el")
+(load-file "~//.emacs.d/local/resize-window.el")
 
 ;; Резервные копии
-(load-file "~//.emacs_local.d/backups.d/backups.el")
+(load-file "~//.emacs.d/local/backups.el")
                                                                                                             
 
 ;; Автозаполнение
-(load-file "~//.emacs_local.d/auto-fill.d/auto-fill.el")
+(load-file "~//.emacs.d/local/auto-fill.el")
 
 
 
