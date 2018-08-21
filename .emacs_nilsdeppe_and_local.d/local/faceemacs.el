@@ -24,8 +24,8 @@
 ;;Цветовая схема 
 ;;---------------------------------------------
 ;;более темные цвета.
-(set-background-color "#333333")
-(set-foreground-color "#ffffff")
+;;временно отключил (set-background-color "#333333")
+;;временно отключил (set-foreground-color "#ffffff")
 ;;---------------------------------------------
 
 
@@ -33,7 +33,7 @@
 ;;________________________________________________________________
 ;;    Settings for new frames (make-frame-command, C-x 5 2)
 ;;________________________________________________________________
-(setq default-frame-alist
-      '((background-color . "#333333")
-        (foreground-color . "#ffffff")))
+;;временно отключил (setq default-frame-alist
+;;временно отключил '((background-color . "#333333")
+;;временно отключил  (foreground-color . "#ffffff")))
 
