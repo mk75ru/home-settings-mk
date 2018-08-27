@@ -9,33 +9,66 @@
 (package-initialize)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Configuration/Customization:
-;; Defines global variables that are later used to customize and set
-;; up packages.
+;; Настройки
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Specify the ycmd server command and path to the ycmd directory *inside* the
-;; cloned ycmd directory
+;; Настройки  ycmd 
 (defvar my:ycmd-server-command '("python" "/home/mikhail/ycmd/ycmd"))
-
 (defvar my:ycmd-extra-conf-whitelist '("~/.ycm_extra_conf.py"))
 (defvar my:ycmd-global-config "~/.ycm_extra_conf.py")
 (defvar my:ycmd-startup-timeout 3)
 
+;;Команда компиляции для  C/C++
+(setq compile-command "clang++ -Wall -Wextra -std=c++14 ")
 
+;; Загрузка пакетов
+(load-file "~//.emacs.d/local/packages.el")
 
-	
-	
-	
-	
-
-;; Compilation command for C/C++
-(defvar my:compile-command "clang++ -Wall -Wextra -std=c++14 ")
-
-;; Emacs is not a package manager, and here we load its package manager!  
-(load-file "~//.emacs.d/local/package.el")
-
-;;YouCompleteMeForEmacs
+;;YouCompleteMe For Emacs
 (load-file "~//.emacs.d/local/YouCompleteMeForEmacs.el")
+
+;;Ctags For Emacs
+(load-file "~//.emacs.d/local/RtagsForEmacs.el")
+
+;; bring up help for key bindings
+;;(use-package which-key
+;;  :ensure t 
+;;  :config
+;;  (which-key-mode))
+
+
+;; Auto completion
+;;(use-package auto-complete
+;;  :ensure t
+;;  :init
+;;  (progn
+;;    (ac-config-default)
+;;    (global-auto-complete-mode t)
+;;    ))
+
+
+;; on the fly syntax checking
+;;(use-package flycheck
+;;  :ensure t
+;;  :init
+;;  (global-flycheck-mode t))
+
+;; snippets and snippet expansion
+;;(use-package yasnippet
+;;  :ensure t
+;;  :init
+;;  (yas-global-mode 1))
+
+
+;; tags for code navigation
+;;(use-package ggtags
+;;  :ensure t
+;;  :config 
+;;  (add-hook 'c-mode-common-hook
+;;	    (lambda ()
+;;	      (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
+;;		(ggtags-mode 1))))
+;;  )
+
 
 
 ;;Настройка внешнего вида редактора 
@@ -60,33 +93,17 @@
 
 ;; Резервные копии
 (load-file "~//.emacs.d/local/backups.el")
-                                                                                                            
-
+                                                                                                  
 ;; Автозаполнение
 (load-file "~//.emacs.d/local/auto-fill.el")
-
-
 
 ;; grep  и compilation в новом окне
 (setq special-display-buffer-names
       '("*grep*" "*compilation*"))
+                                                                                              
+;;; А здесь EMACS хранит настройки, задаваемые через customize
+(setq custom-file "~/.emacs.d/customize.el")
+(load-file "~/.emacs.d/customize.el")
 
-
-                                 
-                                                                                          
 (provide '.emacs)
 ;;; .emacs ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(git-gutter:update-interval 5)
- '(package-selected-packages (quote (slime company-ycmd company-jedi))))
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
