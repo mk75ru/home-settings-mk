@@ -24,7 +24,7 @@
 (load-file "~//.emacs.d/local/packages.el")
 
 ;;YouCompleteMe For Emacs
-(load-file "~//.emacs.d/local/YouCompleteMeForEmacs.el")
+;;(load-file "~//.emacs.d/local/YouCompleteMeForEmacs.el")
 
 ;;Ctags For Emacs
 (load-file "~//.emacs.d/local/RtagsForEmacs.el")
@@ -95,7 +95,7 @@
 (load-file "~//.emacs.d/local/backups.el")
                                                                                                   
 ;; Автозаполнение
-(load-file "~//.emacs.d/local/auto-fill.el")
+;;(load-file "~//.emacs.d/local/auto-fill.el")
 
 ;; grep  и compilation в новом окне
 (setq special-display-buffer-names

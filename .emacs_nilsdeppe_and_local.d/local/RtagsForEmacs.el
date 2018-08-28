@@ -20,7 +20,7 @@
     (c-toggle-auto-newline 1))
   :config
   (progn
-    (add-hook 'c-mode-common-hook #'my/c-mode-hook)))
+    (add-hook 'c-mode-common-hook 'my/c-mode-hook)))
 
 (use-package rtags
   :ensure t
@@ -61,16 +61,17 @@
 
   
   (defun my/rtags-c-mode-common-hook ()
+    (message "fired!!!!!!!!!!!!!!!!")
     (rtags-start-process-unless-running)
     (add-hook 'find-file-hook #'my/rtags-find-file-hook)
-    (with-eval-after-load 'company
-      (require 'company-rtags))
-    (with-eval-after-load 'flycheck
-      (require 'flycheck-rtags))
+    ;;(with-eval-after-load 'company
+    ;;  (require 'company-rtags))
+    ;;(with-eval-after-load 'flycheck
+    ;;  (require 'flycheck-rtags))
     (which-function-mode t))
   :config
   (progn
-    (add-hook 'c-mode-common-hook #'my/rtags-c-mode-common-hook))
+    (add-hook 'c-mode-common-hook 'my/rtags-c-mode-common-hook))
 
 ;;  (add-hook 'c-mode-hook 'rtags-start-process-unless-running)
 ;;  (add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
