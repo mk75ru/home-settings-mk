@@ -1,0 +1,7 @@
+* TODO Проект на C++ c cmake для тестирования
+* TODO Автоформатирование
+* TODO Навигация "go to definition", "go to declaration"
+* TODO Использование переменных, функций, классов, enum  и.т.д
+* TODO Справочник, man , сайты eww
+* TODO Слепая печать
+ 
