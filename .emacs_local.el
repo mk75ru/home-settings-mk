@@ -1,3 +1,4 @@
+
 ;; Personal settings for Emacs.
 
 ;;Перезагрузка .emacs:  M-x load-file
@@ -15,7 +16,7 @@
 (defvar my:ycmd-server-command '("python" "/home/mikhail/ycmd/ycmd"))
 (defvar my:ycmd-extra-conf-whitelist '("~/.ycm_extra_conf.py"))
 (defvar my:ycmd-global-config "~/.ycm_extra_conf.py")
-(defvar my:ycmd-startup-timeout 3)
+(defvar my:ycmd-startup-timeout 30)
 
 ;;Команда компиляции для  C/C++
 (setq compile-command "clang++ -Wall -Wextra -std=c++14 ")
@@ -23,11 +24,34 @@
 ;; Загрузка пакетов
 (load-file "~//.emacs.d/local/packages.el")
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Set up code completion with company
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package company
+  :ensure t
+  :config
+  ;; Zero delay when pressing tab
+  (setq company-idle-delay 0)
+  (add-hook 'after-init-hook 'global-company-mode)
+  ;; remove unused backends
+  (setq company-backends (delete 'company-semantic company-backends))
+  (setq company-backends (delete 'company-eclim company-backends))
+  (setq company-backends (delete 'company-xcode company-backends))
+  (setq company-backends (delete 'company-clang company-backends))
+  (setq company-backends (delete 'company-bbdb company-backends))
+  (setq company-backends (delete 'company-oddmuse company-backends))
+  )
+
+
 ;;YouCompleteMe For Emacs
-;;(load-file "~//.emacs.d/local/YouCompleteMeForEmacs.el")
+(load-file "~//.emacs.d/local/YouCompleteMeForEmacs.el")
 
 ;;Ctags For Emacs
 (load-file "~//.emacs.d/local/RtagsForEmacs.el")
+
+;;yasnippet
+(load-file "~//.emacs.d/local/yasnippet-package.el")
 
 ;; bring up help for key bindings
 ;;(use-package which-key

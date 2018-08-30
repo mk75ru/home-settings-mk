@@ -20,7 +20,7 @@
     (c-toggle-auto-newline 1))
   :config
   (progn
-    (add-hook 'c-mode-common-hook 'my/c-mode-hook)))
+    (add-hook 'c-mode-common-hook #'my/c-mode-hook)))
 
 (use-package rtags
   :ensure t
@@ -71,7 +71,7 @@
     (which-function-mode t))
   :config
   (progn
-    (add-hook 'c-mode-common-hook 'my/rtags-c-mode-common-hook))
+    (add-hook 'c-mode-common-hook #'my/rtags-c-mode-common-hook))
 
 ;;  (add-hook 'c-mode-hook 'rtags-start-process-unless-running)
 ;;  (add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
