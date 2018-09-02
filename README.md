@@ -1,7 +1,10 @@
 # home-settings-mk
 
 README.md
-.emacs.d/local
-.emacs.el
-.emacs_nilsdeppe.el
-.ycm_extra_conf*
+
+ycmd: git clone from mk75ru  branch mk
+rtdgs: git clone from mk75ru branch mk
+emacs-leim: emerge  emacs-leim
+
+
+
