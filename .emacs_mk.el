@@ -12,7 +12,7 @@
 ;; Настройки
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Настройки  ycmd 
-(defvar my:ycmd-server-command '("python" "/home/mikhail/ycmd/ycmd"))
+(defvar my:ycmd-server-command '("python" "/home/miha/ycmd/ycmd"))
 (defvar my:ycmd-extra-conf-whitelist '("~/.ycm_extra_conf.py"))
 (defvar my:ycmd-global-config "~/.ycm_extra_conf.py")
 (defvar my:ycmd-startup-timeout 30)
