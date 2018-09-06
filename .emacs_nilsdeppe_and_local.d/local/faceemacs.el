@@ -1,8 +1,10 @@
 ;;установка размеров экрана
-(set-frame-height (selected-frame) 53)
-(set-frame-width (selected-frame) 146)
-;;(set-frame-height (selected-frame) 75)
-;;(set-frame-width (selected-frame) 205)
+
+;;(set-frame-height (selected-frame) 53)
+;;(set-frame-width (selected-frame) 146)
+
+(set-frame-height (selected-frame) 56)
+(set-frame-width (selected-frame) 170)
 
 
 ;;установка левого верхнего угла фрейма 
