@@ -13,5 +13,6 @@
   (setq company-backends (delete 'company-xcode company-backends))
   (setq company-backends (delete 'company-clang company-backends))
   (setq company-backends (delete 'company-bbdb company-backends))
-  (setq company-backends (delete 'company-oddmuse company-backends)))
+  (setq company-backends (delete 'company-oddmuse company-backends))
+)
 

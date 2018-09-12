@@ -28,6 +28,14 @@
 ;;C-mode
 (load-file "~//.emacs.d/local/CcMode.el")
 
+(use-package modern-cpp-font-lock
+  :ensure t
+  :config	    
+    (add-hook 'c++-mode-hook #'modern-c++-font-lock-mode)
+    ;;or:
+    ;;    (modern-c++-font-lock-global-mode t)
+    )
+
 ;;Браузер
 (load-file "~//.emacs.d/local/W3m.el")
 
@@ -72,7 +80,7 @@
 (load-file "~//.emacs.d/local/RtagsForEmacs.el")
 
 ;;yasnippet
-(load-file "~//.emacs.d/local/yasnippet-package2.el")
+(load-file "~//.emacs.d/local/yasnippet-package.el")
 
 ;;; А здесь EMACS хранит настройки, задаваемые через customize
 (setq custom-file "~/.emacs.d/customize.el")

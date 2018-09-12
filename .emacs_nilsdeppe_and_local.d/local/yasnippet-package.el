@@ -20,8 +20,9 @@
 ;; Apparently the company-yasnippet backend shadows all backends that
 ;; come after it. To work around this we assign yasnippet to a different
 ;; keybind since actual source completion is vital.
-(use-package company-yasnippet
-  :bind ("C-M-y" . company-yasnippet)
-  :after (yasnippet)
-  )
+
+;;(use-package company-yasnippet
+;;  :bind ("C-M-y" . company-yasnippet)
+;;  :after (yasnippet)
+;;  )
 

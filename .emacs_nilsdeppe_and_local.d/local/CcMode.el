@@ -17,8 +17,8 @@
     (setq comment-column   40)
     (c-set-style "k&r")
     (c-toggle-auto-hungry-state 1)
-    (c-toggle-auto-newline 1))
+    (c-toggle-auto-newline 1)
   :config
   (progn
-    (add-hook 'c-mode-common-hook #'my/c-mode-hook)))
+    (add-hook 'c-mode-common-hook #'my/c-mode-hook)) ) )
 

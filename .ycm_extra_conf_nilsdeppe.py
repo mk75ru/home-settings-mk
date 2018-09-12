@@ -31,7 +31,7 @@ import os
 
 import ycm_core
 
-default_flags = ['-x', 'c++', '-Wall', '-Wextra', '-Werror', '-std=c++14','-I/usr/lib/gcc/armv7a-hardfloat-linux-gnueabi/4.9.4/include','-I/usr/lib/gcc/armv7a-hardfloat-linux-gnueabi/4.9.4/include/g++-v4','-I/usr/include/qt4','-I/usr/include/qt4/Qt']
+default_flags = ['-x', 'c++', '-Wall', '-Wextra', '-Werror', '-std=c++14','-I/usr/lib/gcc/armv7a-hardfloat-linux-gnueabi/4.9.4/include','-I/usr/lib/gcc/armv7a-hardfloat-linux-gnueabi/4.9.4/include/g++-v4','-I/usr/include/qt4','-I/usr/include/qt4/Qt', '-I/home/miha/prj/prj-kugo-bsi/alarm-kugo/libZmqIpc/include']
 
 cpp_source_extensions = ['.cpp', '.cxx', '.cc', '.c', '.m', '.mm']
 
