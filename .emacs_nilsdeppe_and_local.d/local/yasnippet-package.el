@@ -5,12 +5,12 @@
   :ensure t
   :commands (yas-reload-all)
   :init
+  (yas-global-mode t)
   (eval-when-compile
     ;; Silence missing function warnings
     (declare-function yas-global-mode "yasnippet.el"))
   :defer 5
-  :config
-  (yas-global-mode t)
+  :config    
   (yas-reload-all))
 (use-package yasnippet-snippets
   :ensure t

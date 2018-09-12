@@ -36,12 +36,6 @@
     ;;    (modern-c++-font-lock-global-mode t)
     )
 
-;;Браузер
-(load-file "~//.emacs.d/local/W3m.el")
-
-;;Словарь
-(load-file "~//.emacs.d/local/DicLookupW3m.el")
-
 ;;Настройка внешнего вида редактора 
 (load-file "~//.emacs.d/local/faceemacs.el")
 
@@ -81,6 +75,20 @@
 
 ;;yasnippet
 (load-file "~//.emacs.d/local/yasnippet-package.el")
+
+
+;;Браузер
+;;(load-file "~//.emacs.d/local/W3m.el")
+
+;;Словарь
+;;(load-file "~//.emacs.d/local/DicLookupW3m.el")
+
+;;Словарь
+;;(load-file "~//.emacs.d/local/Sdcv.el")
+
+;;Словарь
+(load-file "~//.emacs.d/local/GoogleTranslate.el")
+
 
 ;;; А здесь EMACS хранит настройки, задаваемые через customize
 (setq custom-file "~/.emacs.d/customize.el")
