@@ -121,6 +121,11 @@
 	 ))
 
 
+;;Заметки  C-x rjn
+(set-register ?n (cons 'file "/var/lib/syncthing/NotesMK/index.org")) 
+
+(find-file "/var/lib/syncthing/NotesMK/index.org") 
+
 
 (provide '.emacs)
 ;;; .emacs ends here
