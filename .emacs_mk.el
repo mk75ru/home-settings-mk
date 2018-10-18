@@ -17,6 +17,10 @@
 (defvar my:ycmd-global-config "~/.ycm_extra_conf.py")
 (defvar my:ycmd-startup-timeout 30)
 
+
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+
+
 ;;Команда компиляции для  C/C++
 ;;(setq compile-command "clang++ -Wall -Wextra -std=c++14 ")
 ;;(setq compile-command "cd /home/miha/prj/prj-kugo-bsi/alarm-kugo/build-armv7a-debug; make -j8 install")
@@ -84,7 +88,7 @@
 ;;(load-file "~//.emacs.d/local/DicLookupW3m.el")
 
 ;;Словарь
-;;(load-file "~//.emacs.d/local/Sdcv.el")
+(load-file "~//.emacs.d/local/Sdcv.el")
 
 ;;Словарь
 (load-file "~//.emacs.d/local/GoogleTranslate.el")
@@ -93,6 +97,30 @@
 ;;; А здесь EMACS хранит настройки, задаваемые через customize
 (setq custom-file "~/.emacs.d/customize.el")
 (load-file "~/.emacs.d/customize.el")
+
+
+
+;;(require 'org-protocol)
+;;(load-file "~/.emacs.d/org-protocol-capture-html.el")
+;;(require 'org-protocol-capture-html)
+
+;;(add-to-list 'org-capture-templates
+;;             ("w" "Web site" entry (file "~/org/notes.org")
+;;              "* %?\n%c\n%:initial"))
+
+(server-start)
+(require 'org-protocol)
+
+ (setq org-capture-templates
+       '(
+	 ("p" "Web site" entry (file+headline (lambda () (concat org-directory "~/org")) "Inbox")
+	  "* %a\nCaptured On: %U\nWebsite: %l\n\n%i\n%?")
+
+	 ;;("m" "meetup" entry (file "~/nextcloud/caldav.org") "* %?%:description \n%i\n%l")
+	 
+	 ))
+
+
 
 (provide '.emacs)
 ;;; .emacs ends here
