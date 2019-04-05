@@ -32,13 +32,26 @@
 ;;C-mode
 (load-file "~//.emacs.d/local/CcMode.el")
 
+
 (use-package modern-cpp-font-lock
   :ensure t
-  :config	    
-    (add-hook 'c++-mode-hook #'modern-c++-font-lock-mode)
-    ;;or:
-    ;;    (modern-c++-font-lock-global-mode t)
-    )
+  :init
+  (eval-when-compile
+      ;; Silence missing function warnings
+    (declare-function modern-c++-font-lock-global-mode
+                      "modern-cpp-font-lock.el"))
+  :config
+  (modern-c++-font-lock-global-mode t)
+  )
+
+;;(use-package modern-cpp-font-lock
+;;  :ensure t
+;;  :config	    
+;;  (
+;;   add-hook 'c++-mode-hook #'modern-c++-font-lock-mode)
+;;  ;;or:
+;;  ;; (modern-c++-font-lock-global-mode t)
+;;  )
 
 ;;Настройка внешнего вида редактора 
 (load-file "~//.emacs.d/local/faceemacs.el")
@@ -110,16 +123,37 @@
 
 (server-start)
 (require 'org-protocol)
+;;(setq org-todo-keywords
+;;       '((sequence "TODO(t)" "IN PROGRESS(p!)" "|" "DONE(d!)" "CANCELLED(c!)")))
+
+;;(setq org-log-done 'time)
+
+;;(setq org-capture-templates
+;;      (quote (
+;;	      ("t" "todo" entry (file "~/org/refile.org")
+;;               "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
+;;	      )))
+
+
 
  (setq org-capture-templates
        '(
 	 ("p" "Web site" entry (file+headline (lambda () (concat org-directory "~/org")) "Inbox")
 	  "* %a\nCaptured On: %U\nWebsite: %l\n\n%i\n%?")
 
-	 ;;("m" "meetup" entry (file "~/nextcloud/caldav.org") "* %?%:description \n%i\n%l")
+	 ("m" "meetup" entry (file "~/org/bookmarks.org") "* %?%:description \n%i\n%l")
 	 
 	 ))
 
+
+;; (setq org-capture-templates
+;;       '("w" "Capture from web browser such as Conkeror" entry
+;;         (file+headline "~/org/bookmarks.org" "Web capture")
+;;         "* %c %?
+;;  Sourced: %u
+;;  %i" :prepend t :jump-to-captured t))
+
+(global-set-key (kbd "C-c c") 'org-capture)
 
 ;;Заметки  C-x rjn
 (set-register ?n (cons 'file "/var/lib/syncthing/NotesMK/index.org")) 
