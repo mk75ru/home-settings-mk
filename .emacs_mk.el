@@ -23,8 +23,54 @@
 
 ;;Команда компиляции для  C/C++
 ;;(setq compile-command "clang++ -Wall -Wextra -std=c++14 ")
-;;(setq compile-command "cd /home/miha/prj/prj-kugo-bsi/alarm-kugo/build-armv7a-debug; make -j8 install")
-(setq compile-command "cd /home/miha/prj/prj-kugo-bsi/alarm-kugo; ./deploy-remote.sh")
+
+(setq compile-command "make -j8 install")
+
+
+(setq prj-grep-find-command '(" 
+find . \
+-name 'alarm-kugo.src*' \
+-prune -o \
+-type d \
+ \\( \
+-path ./build-armv7a-debug -o \
+-path ./build-armv7a-doxy-debug -o \
+-path ./.git  -o \
+-path ./build-x86-debug -o \
+-path ./.idea  -o \
+-path ./files -o \
+-path ./firmware -o \
+-path  data.bak  \
+ \\)  \
+-prune -o  -type f -exec grep -nH -e  \\{\\} +
+" . 279 ))
+
+;;;###autoload
+(defun prj-grep-find (command-args)
+  "Run grep via find, with user-specified args COMMAND-ARGS.
+Collect output in a buffer.
+While find runs asynchronously, you can use the \\[next-error] command
+to find the text that grep hits refer to.
+
+This command uses a special history list for its arguments, so you can
+easily repeat a find command."
+  (interactive
+   (progn
+     (grep-compute-defaults)
+     (if prj-grep-find-command
+	 (list (read-shell-command "Run find (like this): "
+                                   prj-grep-find-command 'grep-find-history))
+       ;; No default was set
+       (read-string
+        "compile.el: No `grep-find-command' command available. Press RET.")
+       (list nil))))
+  (when command-args
+    (let ((null-device nil))		; see grep
+      (grep command-args))))
+
+;;;###autoload
+(defalias 'prj-find-grep 'prj-grep-find)
+
 
 ;;Инициализация менеджера пакетов
 (load-file "~//.emacs.d/local/UsePackageInit.el")
