@@ -206,7 +206,8 @@ easily repeat a find command."
 (set-register ?n (cons 'file "/home/miha/cloud/cloud.files/opn.files/NotesMK")) 
 
 
-(find-file "/var/lib/syncthing/NotesMK/index.org") 
+;;(find-file "/var/lib/syncthing/NotesMK/index.org") 
+(find-file "/home/miha/cloud/cloud.files/opn.files/NotesMK/index.org") 
 
 
 (provide '.emacs)
