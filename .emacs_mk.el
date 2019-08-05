@@ -202,7 +202,9 @@ easily repeat a find command."
 (global-set-key (kbd "C-c c") 'org-capture)
 
 ;;Заметки  C-x rjn
-(set-register ?n (cons 'file "/var/lib/syncthing/NotesMK/index.org")) 
+;;(set-register ?n (cons 'file "/var/lib/syncthing/NotesMK/index.org")) 
+(set-register ?n (cons 'file "/home/miha/cloud/cloud.files/opn.files/NotesMK")) 
+
 
 (find-file "/var/lib/syncthing/NotesMK/index.org") 
 
