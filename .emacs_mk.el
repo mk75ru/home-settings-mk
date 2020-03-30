@@ -18,6 +18,17 @@
 (defvar my:ycmd-startup-timeout 30)
 
 
+;; Раздельные темы для консоли и иксов
+;;(color-theme-solarized-light)
+;;(if window-system
+;;    (color-theme-solarized-light) ;; С этой темой emacs будет в X11
+;;  (color-theme-solarized-light)) ;; С этой темой будет, если запущен консольный emacs -nw
+
+;;(color-theme-tango-plus )) ;; С этой темой будет, если запущен консольный emacs -nw
+;;(color-theme-comidia)) ;; С этой темой будет, если запущен консольный emacs -nw
+ 
+
+;;C/C++
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 
@@ -152,6 +163,10 @@ easily repeat a find command."
 ;;Словарь
 (load-file "~//.emacs.d/local/GoogleTranslate.el")
 
+;;asterisk-dialplan
+(load-file "~//.emacs.d/local/asterisk-dialplan.el")
+
+
 
 ;;; А здесь EMACS хранит настройки, задаваемые через customize
 (setq custom-file "~/.emacs.d/customize.el")
@@ -209,6 +224,10 @@ easily repeat a find command."
 ;;(find-file "/var/lib/syncthing/NotesMK/index.org") 
 (find-file "/home/miha/cloud/cloud.files/opn.files/NotesMK/index.org") 
 
+
+(with-eval-after-load 'flycheck
+  (require 'flycheck-plantuml)
+  (flycheck-plantuml-setup))
 
 (provide '.emacs)
 ;;; .emacs ends here
