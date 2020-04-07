@@ -60,6 +60,10 @@
   :ensure t  )
 
 
+(use-package goldendict
+  :ensure t  )
+
+(global-set-key (kbd "C-x d") 'goldendict-dwim)
 
 
 
@@ -70,6 +74,8 @@
 (load-file "~//.emacs.d/local/savesession.el")
 
 
+;;Поиск парной скобки и их подсветка A-q
+(load-file "~//.emacs.d/local/matchparen.el")
 
 ;;Перемещение между окнами
 ;;Перемещение по окнам при помощи клавиш  <S-up>, <S-down>, <S-left>, <S-right>
@@ -84,6 +90,81 @@
 ;; Резервные копии
 (load-file "~//.emacs.d/local/backups.el")
                                                                                                   
+;; Автозаполнение
+;;(load-file "~//.emacs.d/local/auto-fill.el")
+
+;; grep  и compilation в новом окне
+(setq special-display-buffer-names
+      '("*grep*" "*compilation*"))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Set up code completion with company
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package company
+  :ensure t
+  :config
+  ;; Zero delay when pressing tab
+  (setq company-idle-delay 0)
+  (add-hook 'after-init-hook 'global-company-mode)
+  ;; remove unused backends
+  (setq company-backends (delete 'company-semantic company-backends))
+  (setq company-backends (delete 'company-eclim company-backends))
+  (setq company-backends (delete 'company-xcode company-backends))
+  (setq company-backends (delete 'company-clang company-backends))
+  (setq company-backends (delete 'company-bbdb company-backends))
+  (setq company-backends (delete 'company-oddmuse company-backends))
+  )
+
+
+;;YouCompleteMe For Emacs
+(load-file "~//.emacs.d/local/YouCompleteMeForEmacs.el")
+
+;;Ctags For Emacs
+(load-file "~//.emacs.d/local/RtagsForEmacs.el")
+
+;;yasnippet
+(load-file "~//.emacs.d/local/yasnippet-package2.el")
+
+;; bring up help for key bindings
+;;(use-package which-key
+;;  :ensure t 
+;;  :config
+;;  (which-key-mode))
+
+
+;; Auto completion
+;;(use-package auto-complete
+;;  :ensure t
+;;  :init
+;;  (progn
+;;    (ac-config-default)
+;;    (global-auto-complete-mode t)
+;;    ))
+
+
+;; on the fly syntax checking
+;;(use-package flycheck
+;;  :ensure t
+;;  :init
+;;  (global-flycheck-mode t))
+
+;; snippets and snippet expansion
+;;(use-package yasnippet
+;;  :ensure t
+;;  :init
+;;  (yas-global-mode 1))
+
+
+;; tags for code navigation
+;;(use-package ggtags
+;;  :ensure t
+;;  :config 
+;;  (add-hook 'c-mode-common-hook
+;;	    (lambda ()
+;;	      (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
+;;		(ggtags-mode 1))))
+;;  )
 
                                                                                               
 ;;; А здесь EMACS хранит настройки, задаваемые через customize
