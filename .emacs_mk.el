@@ -242,104 +242,55 @@ easily repeat a find command."
 
 
 
+
+
 ;;Javascript
-(add-to-list 'auto-mode-alist '("\\.js\\'\\|\\.json\\'" . js2-mode))
+;;; On-demand installation of packages
 
-(use-package js2-mode
-  ;; :mode "\\.js\\'"
-  :bind (:map js2-mode-map ("C-c C-c" . compile)))
+(require 'cl-lib)
 
-(use-package coffee-mode
-  :mode "\\.coffee\\'"
-  :bind (:map coffee-mode-map ("C-c C-c" . compile)))
+(defun require-package (package &optional min-version no-refresh)
+  "Install given PACKAGE, optionally requiring MIN-VERSION.
+If NO-REFRESH is non-nil, the available package lists will not be
+re-downloaded in order to locate PACKAGE."
+  (or (package-installed-p package min-version)
+      (let* ((known (cdr (assoc package package-archive-contents)))
+             (versions (mapcar #'package-desc-version known)))
+        (if (cl-find-if (lambda (v) (version-list-<= min-version v)) versions)
+            (package-install package)
+          (if no-refresh
+              (error "No version of %s >= %S is available" package min-version)
+            (package-refresh-contents)
+            (require-package package min-version t))))))
 
-(use-package jasminejs-mode
-  :after js2-mode
-  :hook ((js2-mode . jasminejs-mode)
-         (jasminejs-mode-hook . jasminejs-add-snippets-to-yas-snippet-dirs)))
-
-
-(defvar my/javascript-test-regexp (concat (regexp-quote "/** Testing **/") "\\(.*\n\\)*")
-  "Regular expression matching testing-related code to remove.
-See `my/copy-javascript-region-or-buffer'.")
-
-(defun my/copy-javascript-region-or-buffer (beg end)
-  "Copy the active region or the buffer, wrapping it in script tags.
-Add a comment with the current filename and skip test-related
-code. See `my/javascript-test-regexp' to change the way
-test-related code is detected."
-  (interactive "r")
-  (unless (region-active-p)
-    (setq beg (point-min) end (point-max)))
-  (kill-new
-   (concat
-    "<script type=\"text/javascript\">\n"
-    (if (buffer-file-name) (concat "// " (file-name-nondirectory (buffer-file-name)) "\n") "")
-    (replace-regexp-in-string
-     my/javascript-test-regexp
-     ""
-     (buffer-substring (point-min) (point-max))
-     nil)
-    "\n</script>")))
-
-(defvar my/debug-counter 1)
-(defun my/insert-or-flush-debug (&optional reset beg end)
-  (interactive "pr")
-  (cond
-   ((= reset 4)
-    (save-excursion
-      (flush-lines "console.log('DEBUG: [0-9]+" (point-min) (point-max))
-      (setq my/debug-counter 1)))
-   ((region-active-p)
-    (save-excursion
-      (goto-char end)
-      (insert ");\n")
-      (goto-char beg)
-      (insert (format "console.log('DEBUG: %d', " my/debug-counter))
-      (setq my/debug-counter (1+ my/debug-counter))
-      (js2-indent-line)))
-   (t
-    ;; Wrap the region in the debug
-    (insert (format "console.log('DEBUG: %d');\n" my/debug-counter))
-    (setq my/debug-counter (1+ my/debug-counter))
-    (backward-char 3)
-    (js2-indent-line))))
+(defun maybe-require-package (package &optional min-version no-refresh)
+  "Try to install PACKAGE, and return non-nil if successful.
+In the event of failure, return nil and print a warning message.
+Optionally require MIN-VERSION.  If NO-REFRESH is non-nil, the
+available package lists will not be re-downloaded in order to
+locate PACKAGE."
+  (condition-case err
+      (require-package package min-version no-refresh)
+    (error
+     (message "Couldn't install optional package `%s': %S" package err)
+     nil)))
 
 
-(use-package js2-mode
-  :commands js2-mode
-  :defer t
-  :interpreter "node"
-  :init (setq js2-basic-offset 2)
-  :bind (:map js2-mode-map
-    ("C-x C-e" . js-send-last-sexp)
-    ("C-M-x" . js-send-last-sexp-and-go)
-    ("C-c b" . js-send-buffer)
-    ("C-c d" . my/insert-or-flush-debug)
-    ("C-c C-b" . js-send-buffer-and-go)
-    ("C-c w" . my/copy-javascript-region-or-buffer))
-  :config (js2-imenu-extras-setup))
+;;; JS
 
+(require-package 'json-mode)
+(require-package 'js2-mode)
+(require-package 'ac-js2)
+(require-package 'coffee-mode)
 
-(use-package coffee-mode
-:defer t
-:config (setq-default coffee-js-mode 'js2-mode coffee-tab-width 2))
+(require-package 'tern)
+(require-package 'tern-auto-complete)
 
-
-
-;; Tern - for Javascript
-
-(use-package tern
-  :config
-  (bind-key "C-c C-c" 'compile tern-mode-keymap)
-  (when (eq system-type 'windows-nt) (setq tern-command '("cmd" "/c" "tern")))
-  (add-hook 'js2-mode-hook 'tern-mode))
-
-
-
-
-;;(use-package company-tern
-;;:init (add-to-list 'company-backends 'company-tern))
+(add-hook 'js-mode-hook (lambda () (tern-mode t)))
+(eval-after-load 'tern
+   '(progn
+      (require 'tern-auto-complete)
+      (tern-ac-setup)))
 
 
 
