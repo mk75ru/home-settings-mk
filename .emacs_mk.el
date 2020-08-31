@@ -239,52 +239,11 @@ easily repeat a find command."
   (flycheck-plantuml-setup))
 
 ;;Javascript
-;;; On-demand installation of packages
-
-(require 'cl-lib)
-
-(defun require-package (package &optional min-version no-refresh)
-  "Install given PACKAGE, optionally requiring MIN-VERSION.
-If NO-REFRESH is non-nil, the available package lists will not be
-re-downloaded in order to locate PACKAGE."
-  (or (package-installed-p package min-version)
-      (let* ((known (cdr (assoc package package-archive-contents)))
-             (versions (mapcar #'package-desc-version known)))
-        (if (cl-find-if (lambda (v) (version-list-<= min-version v)) versions)
-            (package-install package)
-          (if no-refresh
-              (error "No version of %s >= %S is available" package min-version)
-            (package-refresh-contents)
-            (require-package package min-version t))))))
-
-(defun maybe-require-package (package &optional min-version no-refresh)
-  "Try to install PACKAGE, and return non-nil if successful.
-In the event of failure, return nil and print a warning message.
-Optionally require MIN-VERSION.  If NO-REFRESH is non-nil, the
-available package lists will not be re-downloaded in order to
-locate PACKAGE."
-  (condition-case err
-      (require-package package min-version no-refresh)
-    (error
-     (message "Couldn't install optional package `%s': %S" package err)
-     nil)))
+(load-file "~//.emacs.d/local/javascript.el")
 
 
-;;; JS
 
-(require-package 'json-mode)
-(require-package 'js2-mode)
-(require-package 'ac-js2)
-(require-package 'coffee-mode)
 
-(require-package 'tern)
-(require-package 'tern-auto-complete)
-
-(add-hook 'js-mode-hook (lambda () (tern-mode t)))
-(eval-after-load 'tern
-   '(progn
-      (require 'tern-auto-complete)
-      (tern-ac-setup)))
 
 (provide '.emacs)
 ;;; .emacs ends here
