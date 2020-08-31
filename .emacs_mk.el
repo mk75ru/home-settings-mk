@@ -238,12 +238,6 @@ easily repeat a find command."
   (require 'flycheck-plantuml)
   (flycheck-plantuml-setup))
 
-
-
-
-
-
-
 ;;Javascript
 ;;; On-demand installation of packages
 
@@ -291,9 +285,6 @@ locate PACKAGE."
    '(progn
       (require 'tern-auto-complete)
       (tern-ac-setup)))
-
-
-
 
 (provide '.emacs)
 ;;; .emacs ends here
