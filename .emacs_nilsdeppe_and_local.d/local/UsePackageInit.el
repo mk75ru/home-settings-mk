@@ -8,7 +8,20 @@
                          ("gnu" . "http://elpa.gnu.org/packages/")))
 ;;("melpa" . "http://melpa.milkbox.net/packages/")
 (setq package-enable-at-startup nil)
-(package-initialize nil)
+
+
+(custom-set-variables
+ '(package-selected-packages '(borg)))
+
+(if (require 'borg-elpa nil t)
+    (borg-elpa-initialize)
+  (package-initialize))
+
+(add-to-list 'load-path (expand-file-name "lib/borg" user-emacs-directory))
+(require 'borg)
+(borg-initialize)
+
+;;(package-initialize nil)
 
 ;;; Если пакет use-package не установлен, его нужно скачать и
 ;;; установить
