@@ -240,7 +240,7 @@ easily repeat a find command."
   (flycheck-plantuml-setup))
 
 ;;Javascript
-(load-file "~//.emacs.d/local/javascript.el")
+;;(load-file "~//.emacs.d/local/javascript-ng.el")
 
 
 
