@@ -2,7 +2,7 @@
 
 ;;Перезагрузка .emacs:  M-x load-file
 
-3;; Added by Package.el.  This must come before configurations of
+;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
@@ -147,17 +147,16 @@ easily repeat a find command."
 (load-file "~//.emacs.d/local/SpecialDisplayBufferNames.el")
 
 ;; Set up code completion with company
-(load-file "~//.emacs.d/local/CompanyCodeCompletion.el")
+ (load-file "~//.emacs.d/local/CompanyCodeCompletion.el")
 
 ;;YouCompleteMe For Emacs
-(load-file "~//.emacs.d/local/YouCompleteMeForEmacs.el")
+ (load-file "~//.emacs.d/local/YouCompleteMeForEmacs.el")
 
 ;;Rtags For Emacs
-(load-file "~//.emacs.d/local/RtagsForEmacs.el")
+ (load-file "~//.emacs.d/local/RtagsForEmacs.el")
 
 ;;yasnippet
-(load-file "~//.emacs.d/local/yasnippet-package.el")
-
+ (load-file "~//.emacs.d/local/yasnippet-package.el")
 
 ;;Браузер
 ;;(load-file "~//.emacs.d/local/W3m.el")
@@ -169,12 +168,12 @@ easily repeat a find command."
 (load-file "~//.emacs.d/local/Sdcv.el")
 
 ;;Словарь
-(require 'google-translate)
-(require 'google-translate-default-ui)
-(load-file "~//.emacs.d/local/GoogleTranslate.el")
+ (require 'google-translate)
+ (require 'google-translate-default-ui)
+ (load-file "~//.emacs.d/local/GoogleTranslate.el")
 
 ;;asterisk-dialplan
-(load-file "~//.emacs.d/local/asterisk-dialplan.el")
+ (load-file "~//.emacs.d/local/asterisk-dialplan.el")
 
 
 
@@ -182,69 +181,22 @@ easily repeat a find command."
 (setq custom-file "~/.emacs.d/customize.el")
 (load-file "~/.emacs.d/customize.el")
 
+;;Emacs server
+ (server-start)
 
-
-;;(require 'org-protocol)
-;;(load-file "~/.emacs.d/org-protocol-capture-html.el")
-;;(require 'org-protocol-capture-html)
-
-;;(add-to-list 'org-capture-templates
-;;             ("w" "Web site" entry (file "~/org/notes.org")
-;;              "* %?\n%c\n%:initial"))
-
-(server-start)
-(require 'org-protocol)
-;;(setq org-todo-keywords
-;;       '((sequence "TODO(t)" "IN PROGRESS(p!)" "|" "DONE(d!)" "CANCELLED(c!)")))
-
-;;(setq org-log-done 'time)
-
-;;(setq org-capture-templates
-;;      (quote (
-;;	      ("t" "todo" entry (file "~/org/refile.org")
-;;               "* TODO %?\n%U\n%a\n" :clock-in t :clock-resume t)
-;;	      )))
-
-
-
- (setq org-capture-templates
-       '(
-	 ("p" "Web site" entry (file+headline (lambda () (concat org-directory "~/org")) "Inbox")
-	  "* %a\nCaptured On: %U\nWebsite: %l\n\n%i\n%?")
-
-	 ("m" "meetup" entry (file "~/org/bookmarks.org") "* %?%:description \n%i\n%l")
-	 
-	 ))
-
-
-;; (setq org-capture-templates
-;;       '("w" "Capture from web browser such as Conkeror" entry
-;;         (file+headline "~/org/bookmarks.org" "Web capture")
-;;         "* %c %?
-;;  Sourced: %u
-;;  %i" :prepend t :jump-to-captured t))
-
-(global-set-key (kbd "C-c c") 'org-capture)
+;;Org-mode
+ (load-file "~/.emacs.d/local/OrgMode.el")
 
 ;;Заметки  C-x rjn
-;;(set-register ?n (cons 'file "/var/lib/syncthing/NotesMK/index.org")) 
-(set-register ?n (cons 'file "/home/miha/cloud/cloud.files/opn.files/NotesMK/index.org")) 
+ (load-file "~/.emacs.d/local/Notes.el")
 
-
-;;(find-file "/var/lib/syncthing/NotesMK/index.org") 
-(find-file "/home/miha/cloud/cloud.files/opn.files/NotesMK/index.org") 
-
-
-(with-eval-after-load 'flycheck
-  (require 'flycheck-plantuml)
-  (flycheck-plantuml-setup))
+;;Flycheck - flycheck-plantuml
+ (load-file "~/.emacs.d/local/FlycheckPlantuml.el")
 
 ;;Javascript
-;;(load-file "~//.emacs.d/local/javascript-ng.el")
-
-
-
-
+(load-file "~/.emacs.d/emacs-js/emacs-js.el")
+;;(load-file "~/.emacs.d/local/javascript_v2.el")
+;;(load-file "~/.emacs.d/local/javascript.el")
 
 (provide '.emacs)
 ;;; .emacs ends here
